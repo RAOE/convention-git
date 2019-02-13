@@ -21,10 +21,8 @@ print_error_msg(){
   exit 1
 }
 
-if [[ $content =~ $COMMIT_MESSAGE_CONVENTION_REGEX ]]
+if [[ ! $content =~ $COMMIT_MESSAGE_CONVENTION_REGEX ]]
 then
-  echo right
-else
   # check []
   if [[ ! $content =~ $COMMIT_MESSAGE_OPERATION_SYMBOL_REGEX ]]
   then
@@ -43,6 +41,4 @@ else
   else
     print_error_msg "Please make sure your operation is correct\nOperations: Init|Update|Remove|Delete|New|Add|Patch|Fix"
   fi
-
-  echo error
 fi
