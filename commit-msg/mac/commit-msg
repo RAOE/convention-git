@@ -1,0 +1,48 @@
+#!/bin/bash
+
+filename=$1
+
+# read commit message in file
+content=$(cat $1)
+
+COMMIT_MESSAGE_CONVENTION_REGEX='^(\[(Init|Update|Remove|Delete|New|Add|Patch|Fix)\]) .+$';
+COMMIT_MESSAGE_OPERATION_SYMBOL_REGEX='^\[.+\]'
+COMMIT_MESSAGE_SPACE_REGEX='^\[.+\] '
+COMMIT_MESSAGE_MESSAGE_REGEX='^\[.+\] .+$'
+COMMIT_MESSAGE_OPERATION_REGEX='^\[.+\] .+'
+
+print_red_msg(){
+  echo -e "\033[31m${1}\033[0m"
+}
+
+print_error_msg(){
+  print_red_msg "[CommitMessageError]$1"
+  print_red_msg "\nExample: [Init] this is a commit message"
+  exit 1
+}
+
+if [[ $content =~ $COMMIT_MESSAGE_CONVENTION_REGEX ]]
+then
+  echo right
+else
+  # check []
+  if [[ ! $content =~ $COMMIT_MESSAGE_OPERATION_SYMBOL_REGEX ]]
+  then
+    print_error_msg "Missing '['"
+  fi
+
+  # check space
+  if [[ ! $content =~ $COMMIT_MESSAGE_SPACE_REGEX ]]
+  then
+    print_error_msg "Missing blank space"
+  fi
+
+  if [[ ! $content =~ $COMMIT_MESSAGE_MESSAGE_REGEX ]]
+  then
+    print_error_msg "Missing message of commit"
+  else
+    print_error_msg "Please make sure your operation is correct\nOperations: Init|Update|Remove|Delete|New|Add|Patch|Fix"
+  fi
+
+  echo error
+fi
