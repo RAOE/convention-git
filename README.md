@@ -35,6 +35,7 @@ You can tell us more `operation` in Issue
 - Add
 - Patch
 - Fix
+- Test
 
 ```shell
 e.g. [operation] message
