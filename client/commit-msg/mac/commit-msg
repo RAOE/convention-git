@@ -5,7 +5,7 @@ filename=$1
 # read commit message in file
 content=$(cat $1)
 
-COMMIT_MESSAGE_CONVENTION_REGEX='^(\[(Init|Update|Remove|Delete|New|Add|Patch|Fix)\]) .+$';
+COMMIT_MESSAGE_CONVENTION_REGEX='^(\[(Init|Update|Remove|Move|Delete|New|Add|Patch|Fix)\]) .+$';
 COMMIT_MESSAGE_OPERATION_SYMBOL_REGEX='^\[.+\]'
 COMMIT_MESSAGE_SPACE_REGEX='^\[.+\] '
 COMMIT_MESSAGE_MESSAGE_REGEX='^\[.+\] .+$'
