@@ -15,7 +15,7 @@ You can tell us more `operation` in Issue
 **Operations**
 
 - Init
-- Update
+- Feat
 - Remove
 - Delete
 - Move
